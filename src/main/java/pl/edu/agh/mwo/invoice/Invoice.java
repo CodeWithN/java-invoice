@@ -7,24 +7,26 @@ import pl.edu.agh.mwo.invoice.product.Product;
 
 public class Invoice {
     //private Collection<Product> products = new ArrayLis t<>();
-   // private List<Product> products = new ArrayList<>();
+    // private List<Product> products = new ArrayList<>();
     private Map<Product, Integer> products= new HashMap<>();
 
     public void addProduct(Product product) {
-        this.addProduct(product,1);//product WITH QUANTITY =1
+        this.addProduct(product,1);//product with quantity =1
     }
 
     public void addProduct(Product product, Integer quantity) {
         //if conditions will be implements to both ,,addProduct"
-
+        if(quantity == -1 || quantity == 0){
+            throw new IllegalArgumentException("Quantity cannot be null or empty");
+        }
         this.products.put(product, quantity); //we use put, add is not at map
     }
 
     public BigDecimal getNetPrice() {
         BigDecimal sum = BigDecimal.ZERO;
 
-        for (Product product : this.products.keySet()) { //it takes out a set of keys and it will be a collection, not set
-            //for all keys do sth
+        for (Product product : this.products.keySet()) { //it takes out a set of keys and it will be a collection, not set for all keys do sth
+
             Integer quantity = this.products.get(product);
             BigDecimal quantityAsBigDecimal = BigDecimal.valueOf(quantity);
             sum =sum.add(product.getPrice().multiply(quantityAsBigDecimal));
@@ -43,9 +45,7 @@ public class Invoice {
     public BigDecimal getTotal() {
 
         BigDecimal total = BigDecimal.ZERO;
-
         for (Product product : this.products.keySet()) {
-
             Integer quantity = this.products.get(product);
             BigDecimal quantityAsBigDecimal = BigDecimal.valueOf(quantity);
             total =total.add((product.getPrice()).multiply(quantityAsBigDecimal)

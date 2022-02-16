@@ -40,8 +40,6 @@ public class InvoiceTest {
         Product taxFreeProduct = new TaxFreeProduct("Warzywa", new BigDecimal("199.99"));
         invoice.addProduct(taxFreeProduct);
         Assert.assertThat(invoice.getTotal(), Matchers.comparesEqualTo(invoice.getNetPrice()));
-        //jak na fakturze prod bezpodatkowy to jego cena(jest to jedyny produkt)
-        // po dodaniu prod do faktury to powinna sie rownac cenie netto (cena netto=cena brutto)
     }
 
     @Test
