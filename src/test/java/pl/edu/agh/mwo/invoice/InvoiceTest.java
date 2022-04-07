@@ -150,14 +150,22 @@ public class InvoiceTest {
         int number2 = new Invoice().getNumber();
         Assert.assertThat(number1, Matchers.lessThan(number2));
     }
+
+    //Additional tests - printing
     @Test
     public void testOtherProductAddedCorrectly() {
         invoice.addProduct(new OtherProduct("Banana", new BigDecimal("2.20")));
         Assert.assertTrue(invoice.getInvoiceProductList().contains("Banana"));
     }
-
+    @Test
     public void testOtherProductPriceAddedCorrectly() {
         invoice.addProduct(new OtherProduct("Banana", new BigDecimal("2.20")));
-        Assert.assertThat(new BigDecimal("2.20"), Matchers.comparesEqualTo(invoice.getGrossTotal()));
+        Assert.assertThat(new BigDecimal("2.20"), Matchers.comparesEqualTo(invoice.getNetTotal()));
     }
+    @Test
+    public void testOtherProductQuantityAddedCorrectly() {
+        invoice.addProduct(new DairyProduct("Banana", new BigDecimal("2.20")), 6);
+        Assert.assertTrue(invoice.getInvoiceProductList().contains("6"));
+    }
+
 }
