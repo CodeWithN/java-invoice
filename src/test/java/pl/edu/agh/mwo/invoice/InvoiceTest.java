@@ -157,7 +157,7 @@ public class InvoiceTest {
     invoice.addProduct(new OtherProduct("Banana", new BigDecimal("2.20")));
     Assert.assertTrue(invoice.getInvoiceProductList().contains("Banana"));
 }
-
+    @Test
     public void testOtherProductPriceAddedCorrectly() {
         invoice.addProduct(new OtherProduct("Banana", new BigDecimal("2.20")));
         Assert.assertThat(new BigDecimal("2.20"), Matchers.comparesEqualTo(invoice.getGrossTotal()));
