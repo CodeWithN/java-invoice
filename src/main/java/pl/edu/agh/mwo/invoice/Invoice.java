@@ -61,7 +61,7 @@ public class Invoice {
             productList += product.getName() + "\t" + products.get(product) + "\t" + product.getPrice() + "\n";
             counter++;
         }
+        productList += "\nNumber of positions: " + counter;
         return productList;
     }
-
 }

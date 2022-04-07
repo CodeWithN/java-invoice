@@ -160,7 +160,16 @@ public class InvoiceTest {
     @Test
     public void testOtherProductPriceAddedCorrectly() {
         invoice.addProduct(new OtherProduct("Banana", new BigDecimal("2.20")));
-        Assert.assertThat(new BigDecimal("2.20"), Matchers.comparesEqualTo(invoice.getGrossTotal()));
+        Assert.assertThat(new BigDecimal("2.20"), Matchers.comparesEqualTo(invoice.getNetTotal()));
+    }
+
+    @Test
+    public void testProductNumberOfProducts() {
+        invoice.addProduct(new OtherProduct("Banana", new BigDecimal("2.20")));
+        invoice.addProduct(new OtherProduct("Apple", new BigDecimal("3")));
+        invoice.addProduct(new DairyProduct("Cheese", new BigDecimal("5.5")));
+        invoice.addProduct(new DairyProduct("Yoghurt", new BigDecimal("2.25")));
+        Assert.assertTrue(invoice.getInvoiceProductList().endsWith("4"));
     }
 
 }
