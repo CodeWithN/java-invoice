@@ -1,7 +1,9 @@
 package pl.edu.agh.mwo.invoice;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import pl.edu.agh.mwo.invoice.product.Product;
 
@@ -20,6 +22,7 @@ public class Invoice {
         }
         products.put(product, quantity);
     }
+
 
     public BigDecimal getNetTotal() {
         BigDecimal totalNet = BigDecimal.ZERO;
@@ -43,7 +46,22 @@ public class Invoice {
         return totalGross;
     }
 
+
     public int getNumber() {
         return number;
     }
+
+    public String getInvoiceProductList() {
+
+        int counter = 0;
+        String productList = "Invoice number: " + getNumber() + "\n"
+                + "ProductName: \t" + "Quantity: \t" + "Unit price:\n";
+
+        for (Product product : products.keySet()) {
+            productList += product.getName() + "\t" + products.get(product) + "\t" + product.getPrice() + "\n";
+            counter++;
+        }
+        return productList;
+    }
+
 }
