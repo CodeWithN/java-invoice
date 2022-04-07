@@ -54,7 +54,8 @@ public class Invoice {
                 + "ProductName: \t" + "Quantity: \t" + "Unit price:\n";
 
         for (Product product : products.keySet()) {
-            productList += product.getName() + "\t" + products.get(product) + "\t" + product.getPrice() + "\n";
+            productList += product.getName() + "\t"
+                    + products.get(product) + "\t" + product.getPrice() + "\n";
             counter++;
         }
         return productList;
