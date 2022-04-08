@@ -125,7 +125,6 @@ public class InvoiceTest {
     public void testAddingNullProduct() {
         invoice.addProduct(null);
     }
-
     //Invoice Number
     @Test
     public void testInvoiceHasNumberGreaterThan0() {
@@ -152,24 +151,21 @@ public class InvoiceTest {
         Assert.assertThat(number1, Matchers.lessThan(number2));
     }
 
+    //Additional tests - printing
     @Test
     public void testOtherProductAddedCorrectly() {
-    invoice.addProduct(new OtherProduct("Banana", new BigDecimal("2.20")));
-    Assert.assertTrue(invoice.getInvoiceProductList().contains("Banana"));
-}
+        invoice.addProduct(new OtherProduct("Banana", new BigDecimal("2.20")));
+        Assert.assertTrue(invoice.getInvoiceProductList().contains("Banana"));
+    }
     @Test
     public void testOtherProductPriceAddedCorrectly() {
         invoice.addProduct(new OtherProduct("Banana", new BigDecimal("2.20")));
         Assert.assertThat(new BigDecimal("2.20"), Matchers.comparesEqualTo(invoice.getNetTotal()));
     }
-
     @Test
-    public void testProductNumberOfProducts() {
-        invoice.addProduct(new OtherProduct("Banana", new BigDecimal("2.20")));
-        invoice.addProduct(new OtherProduct("Apple", new BigDecimal("3")));
-        invoice.addProduct(new DairyProduct("Cheese", new BigDecimal("5.5")));
-        invoice.addProduct(new DairyProduct("Yoghurt", new BigDecimal("2.25")));
-        Assert.assertTrue(invoice.getInvoiceProductList().endsWith("4"));
+    public void testOtherProductQuantityAddedCorrectly() {
+        invoice.addProduct(new DairyProduct("Banana", new BigDecimal("2.20")), 6);
+        Assert.assertTrue(invoice.getInvoiceProductList().contains("6"));
     }
 
 }
