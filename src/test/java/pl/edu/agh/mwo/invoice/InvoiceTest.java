@@ -172,5 +172,11 @@ public class InvoiceTest {
         invoice.addProduct(new DairyProduct("Cheese", new BigDecimal("5.20")), 4);
         Assert.assertTrue(invoice.getInvoiceProductList().contains("4"));
     }
+    @Test
+    public void testCorrectQuantitySummation() {
+        invoice.addProduct(new DairyProduct("Cheese", new BigDecimal("5.50")));
+        invoice.addProduct(new OtherProduct("Banana", new BigDecimal("2.2")));
+        Assert.assertTrue(invoice.getInvoiceProductList().endsWith("2"));
+    }
 
 }
