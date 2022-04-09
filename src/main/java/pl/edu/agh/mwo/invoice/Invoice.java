@@ -54,6 +54,7 @@ public class Invoice {
         return number;
     }
 
+    //Printing an invoice as a string
     public String getInvoiceProductList() {
 
         int counter = 0;

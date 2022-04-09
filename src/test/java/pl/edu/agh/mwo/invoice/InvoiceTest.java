@@ -163,17 +163,24 @@ public class InvoiceTest {
         Assert.assertThat(new BigDecimal("2.20"), Matchers.comparesEqualTo(invoice.getNetTotal()));
     }
     @Test
-    public void testOtherProductQuantityAddedCorrectly() {
+    public void testDairyProductQuantityAddedCorrectly() {
         invoice.addProduct(new DairyProduct("Cheese", new BigDecimal("5.50")), 6);
         Assert.assertTrue(invoice.getInvoiceProductList().contains("6"));
     }
     //Additional test - Adding duplicate products
     @Test
-    public void testInvoiceHasProperQuantityAfterAddingSameProduct() {
+    public void testInvoiceHasProperQuantityAfterAddingTheSameDairyProduct() {
         Product cheese = new DairyProduct("Cheese", new BigDecimal("5.50"));
         invoice.addProduct(cheese, 1);
         invoice.addProduct(cheese, 2);
         Assert.assertTrue(invoice.getInvoiceProductList().contains("3"));
+    }
+    @Test
+    public void testInvoiceHasProperQuantityAfterAddingTheSameProduct() {
+        Product banana = new OtherProduct("Banana", new BigDecimal("2.20"));
+        invoice.addProduct(banana, 3);
+        invoice.addProduct(banana, 2);
+        Assert.assertTrue(invoice.getInvoiceProductList().contains("5"));
     }
 
 }
