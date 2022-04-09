@@ -22,9 +22,10 @@ public class Invoice {
         if (products.keySet().contains(product)) {
             Integer initialQuantity = products.get(product);
             products.put(product, initialQuantity + quantity);
-        } else
+        } else {
             //we add new product
             products.put(product, quantity);
+        }
     }
 
     public BigDecimal getNetTotal() {
