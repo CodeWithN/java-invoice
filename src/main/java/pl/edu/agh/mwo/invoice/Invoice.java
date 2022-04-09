@@ -18,7 +18,13 @@ public class Invoice {
         if (product == null || quantity <= 0) {
             throw new IllegalArgumentException();
         }
-        products.put(product, quantity);
+        //if product exist we add quantity
+        if (products.keySet().contains(product)) {
+            Integer initialQuantity = products.get(product);
+            products.put(product, initialQuantity + quantity);
+        } else
+            //we add new product
+            products.put(product, quantity);
     }
 
     public BigDecimal getNetTotal() {
